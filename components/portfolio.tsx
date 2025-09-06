@@ -1,6 +1,6 @@
 "use client"
 
-import { Github, Linkedin, Mail, ExternalLink, MapPin } from "lucide-react"
+import { Github, Linkedin, Mail, File ,ExternalLink, MapPin } from "lucide-react"
 
 export default function PortfolioContent() {
   const techStack = [
@@ -130,7 +130,7 @@ export default function PortfolioContent() {
                 {techStack.map((tech, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white/80 text-xs font-light border border-white/20 hover:bg-white/20 transition-all duration-200"
+                    className="cursor-default px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white/80 text-xs font-light border border-white/20 hover:bg-white/20 transition-all duration-200"
                   >
                     {tech}
                   </span>
@@ -184,14 +184,21 @@ export default function PortfolioContent() {
             </div>
 
             {/* Contact CTA */}
-            <div className="pt-4">
+            <div className="pt-4 flex gap-4">
               <a
-                href="mailto:alex@example.com"
+                href="a.bhagyacharan@gmail.com"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-normal text-sm transition-all duration-200 hover:bg-white/90 cursor-pointer"
               >
                 <Mail className="w-4 h-4" />
                 Get In Touch
               </a>
+              <a
+                href="mailto:alex@example.com"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-white/80 font-normal text-sm border-white/80 hover:bg-white/20 transition-all duration-200 cursor-pointer"
+              >
+                <File className="w-4 h-4" />
+                Download Resume
+              </a>  
             </div>
           </div>
         </div>
