@@ -139,3 +139,33 @@
 .instrument {
   font-family: var(--font-instrument-serif);
 }
+
+/* globals.css */
+.nice-scrollbar {
+  /* Firefox (standards) */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.35) transparent;
+
+  /* Reserve space so content doesn't shift when the scrollbar appears */
+  scrollbar-gutter: stable both-edges;
+}
+
+/* Chromium/Safari (WebKit pseudoelements) */
+.nice-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.nice-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nice-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.35);
+  border-radius: 9999px;         /* pill */
+  border: 2px solid transparent; /* inset effect */
+  background-clip: padding-box;
+}
+
+.nice-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255,255,255,0.55);
+}

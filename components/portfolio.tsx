@@ -1,46 +1,80 @@
-"use client"
+"use client";
 
-import { Github, Linkedin, Mail, File ,ExternalLink, MapPin } from "lucide-react"
+import { useMemo, useState } from "react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  File,
+  ExternalLink,
+  MapPin,
+  ArrowRight,
+  ArrowLeft,
+  Twitter,
+  FileText,
+} from "lucide-react";
 
 export default function PortfolioContent() {
-  const techStack = [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "PostgreSQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
-    "Tailwind CSS",
-    "GraphQL",
-    "Redis",
-  ]
+  const techStack = {
+    Frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    Backend: ["Node.js", "Python", "GraphQL"],
+    Database: ["PostgreSQL", "MongoDB", "Redis"],
+    DevOps: ["AWS", "Docker"],
+  };
 
   const projects = [
     {
       title: "E-Commerce Platform",
-      description: "Full-stack marketplace with real-time chat and payment integration",
+      description:
+        "Full-stack marketplace with real-time chat and payment integration",
       tech: ["Next.js", "Stripe", "PostgreSQL"],
       link: "https://github.com/yourusername/ecommerce",
       live: "https://yourproject.com",
     },
     {
       title: "AI Dashboard",
-      description: "Analytics dashboard with machine learning insights and data visualization",
+      description:
+        "Analytics dashboard with machine learning insights and data visualization",
       tech: ["React", "Python", "TensorFlow"],
       link: "https://github.com/yourusername/ai-dashboard",
       live: "https://ai-dashboard.com",
     },
     {
-      title: "Mobile Banking App",
-      description: "Secure fintech application with biometric authentication",
-      tech: ["React Native", "Node.js", "MongoDB"],
-      link: "https://github.com/yourusername/banking-app",
-      live: null,
+      title: "Mock Interview Platform",
+      description:
+        "AI-first mock interview platform with role-based question banks and scoring",
+      tech: ["Next.js", "PostgreSQL", "OpenAI"],
+      link: "https://github.com/yourusername/mockr",
+      live: "https://mockr.example.com",
     },
-  ]
+    {
+      title: "Macro Tracker",
+      description:
+        "Nutrition tracking app with custom recipes and daily macro goals",
+      tech: ["React", "Node.js", "MongoDB"],
+      link: "https://github.com/yourusername/macro-tracker",
+      live: "https://macro-tracker.example.com",
+    },
+    // Add more projects if needed...
+  ];
+
+  // Pagination state
+  const perPage = 2; // show 2 projects at a time
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(projects.length / perPage);
+  const pagedProjects = useMemo(() => {
+    const start = (currentPage - 1) * perPage;
+    return projects.slice(start, start + perPage);
+  }, [currentPage, projects]);
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+    // Optional: Auto-scroll projects section into view on page change
+    const el = document.getElementById("projects-section");
+    el?.scrollIntoView({ behavior: "smooth", block: "nearest" }); // UX nicety
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-8">
@@ -54,9 +88,12 @@ export default function PortfolioContent() {
             {/* Name & Title */}
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-5xl font-light text-white tracking-tight">
-                <span className="font-medium italic instrument">Aela</span> Bhagya Charan
+                <span className="font-medium italic instrument">Aela</span>{" "}
+                Bhagya Charan
               </h1>
-              <p className="text-xl text-white/80 font-light">Full Stack Developer</p>
+              <p className="text-xl text-white/80 font-light">
+                Full Stack Developer
+              </p>
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <MapPin className="w-4 h-4" />
                 Hyderbad, India
@@ -65,37 +102,47 @@ export default function PortfolioContent() {
 
             {/* Experience */}
             <div className="space-y-4">
-              <h2 className="text-lg font-medium text-white/90 border-b border-white/20 pb-2">Experience</h2>
+              <h2 className="text-lg font-medium text-white/90 border-b border-white/20 pb-2">
+                Experience
+              </h2>
               <div className="space-y-4 text-sm">
                 <div>
-                  <h3 className="text-white font-medium">Senior Developer</h3>
-                  <p className="text-white/70">TechCorp Inc. • 2022 - Present</p>
-                  <p className="text-white/60 text-xs mt-1">
-                    Leading full-stack development for enterprise applications
+                  <h3 className="text-white font-medium">Developer Intern</h3>
+                  <p className="text-white/70">
+                    Accenture • Feb, 2025 - June, 2025
                   </p>
-                </div>
-                <div>
-                  <h3 className="text-white font-medium">Frontend Developer</h3>
-                  <p className="text-white/70">StartupXYZ • 2020 - 2022</p>
-                  <p className="text-white/60 text-xs mt-1">Built responsive web applications and mobile interfaces</p>
+                  <p className="text-white/60 text-xs mt-1">
+                    Developed a strong foundation in Web Development, Python,
+                    and CORE fundamentals, and gained hands-on experience with
+                    enterprise platforms (Adobe Campaign Classic). Designed and
+                    automated workflows for multi-channel communication and
+                    delivered client-focused solutions.
+                  </p>
                 </div>
               </div>
             </div>
 
             {/* Education */}
             <div className="space-y-4">
-              <h2 className="text-lg font-medium text-white/90 border-b border-white/20 pb-2">Education</h2>
+              <h2 className="text-lg font-medium text-white/90 border-b border-white/20 pb-2">
+                Education
+              </h2>
               <div className="text-sm">
-                <h3 className="text-white font-medium">B.S. Computer Science</h3>
-                <p className="text-white/70">Stanford University • 2016 - 2020</p>
-                <p className="text-white/60 text-xs mt-1">Magna Cum Laude, Focus on Software Engineering</p>
+                <h3 className="text-white font-medium">
+                  B.Tech in Computer Science - Data Science
+                </h3>
+
+                <p className="text-white/70">
+                  B V Raju Institute of Technology • 2021 - 2025
+                </p>
+                <p className="text-white/60 text-xs mt-1">Hyderabad, India</p>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/abhagyacharan"
                 className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200 text-white/80 hover:text-white"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -111,10 +158,12 @@ export default function PortfolioContent() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="mailto:alex@example.com"
+                href="https://x.com/abhagyacharan"
                 className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200 text-white/80 hover:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Mail className="w-5 h-5" />
+                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -125,30 +174,146 @@ export default function PortfolioContent() {
           <div className="space-y-8">
             {/* Tech Stack */}
             <div className="space-y-4">
-              <h2 className="text-lg font-medium text-white/90 border-b border-white/20 pb-2">Tech Stack</h2>
-              <div className="flex flex-wrap gap-2">
-                {techStack.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="cursor-default px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white/80 text-xs font-light border border-white/20 hover:bg-white/20 transition-all duration-200"
-                  >
-                    {tech}
+              <h2 className="text-lg font-medium text-white/90 border-b border-white/20 pb-2">
+                Tech Stack
+              </h2>
+
+              <div className="space-y-3">
+                {/* Frontend */}
+                <div className="flex items-center flex-wrap gap-2">
+                  <span className="text-sm font-medium text-white/80">
+                    Frontend
                   </span>
-                ))}
+                  {["React", "Next.js", "TypeScript", "Tailwind CSS"].map(
+                    (tech, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 rounded-full cursor-default bg-white/10 backdrop-blur-sm text-white/80 text-xs font-light border border-white/20 hover:bg-white/20 transition-all duration-200"
+                      >
+                        {tech}
+                      </span>
+                    )
+                  )}
+                </div>
+
+                {/* Backend */}
+                <div className="flex items-center flex-wrap gap-2">
+                  <span className="text-sm font-medium text-white/80">
+                    Backend
+                  </span>
+                  {["Node.js", "Python", "GraphQL"].map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 rounded-full cursor-default bg-white/10 backdrop-blur-sm text-white/80 text-xs font-light border border-white/20 hover:bg-white/20 transition-all duration-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Databases */}
+                <div className="flex items-center flex-wrap gap-2">
+                  <span className="text-sm font-medium text-white/80 w-">
+                    Databases
+                  </span>
+                  {["PostgreSQL", "MongoDB", "Redis"].map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 rounded-full cursor-default bg-white/10 backdrop-blur-sm text-white/80 text-xs font-light border border-white/20 hover:bg-white/20 transition-all duration-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* DevOps / Cloud */}
+                <div className="flex items-center flex-wrap gap-2">
+                  <span className="text-sm font-medium text-white/80">
+                    DevOps
+                  </span>
+                  {["AWS", "Docker"].map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 rounded-full cursor-default bg-white/10 backdrop-blur-sm text-white/80 text-xs font-light border border-white/20 hover:bg-white/20 transition-all duration-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Projects */}
-            <div className="space-y-4">
-              <h2 className="text-lg font-medium text-white/90 border-b border-white/20 pb-2">Featured Projects</h2>
+            {/* Projects with numeric pagination */}
+            <div className="space-y-4" id="projects-section">
+              {/* Header row with title on left, pagination on right */}
+              <div className="flex items-center justify-between w-full">
+                <h2 className="text-lg font-medium text-white/90 border-b border-transparent pb-0">
+                  Featured Projects
+                </h2>
+
+                <nav
+                  className="flex items-center gap-2"
+                  aria-label="Projects pagination"
+                >
+                  {/* Prev */}
+                  {/* <button
+                      onClick={() => goToPage(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="px-3 py-1.5 rounded-full text-xs border border-white/20 text-white/70 hover:text-white hover:border-white/40 disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      <ArrowLeft/>
+                    </button> */}
+
+                  {/* Page numbers */}
+                  <ul className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                      (page) => (
+                        <li key={page}>
+                          <button
+                            onClick={() => goToPage(page)}
+                            aria-current={
+                              currentPage === page ? "page" : undefined
+                            }
+                            className={[
+                              "w-8 h-8 rounded-full text-xs",
+                              "border border-white/20 transition-colors cursor-pointer",
+                              currentPage === page
+                                ? "bg-white text-black"
+                                : "text-white/70 hover:text-white hover:border-white/40",
+                            ].join(" ")}
+                          >
+                            {page}
+                          </button>
+                        </li>
+                      )
+                    )}
+                  </ul>
+
+                  {/* Next */}
+                  {/* <button
+                      onClick={() => goToPage(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-1.5 rounded-full text-xs border border-white/20 text-white/70 hover:text-white hover:border-white/40 disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <ArrowRight/>
+                  </button> */}
+                </nav>
+              </div>
+
+              {/* Keep the border under the full row if desired */}
+              <div className="border-b border-white/20" />
+
+              {/* Paged content stays the same */}
               <div className="space-y-6">
-                {projects.map((project, index) => (
+                {pagedProjects.map((project, index) => (
                   <div
                     key={index}
                     className="p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-200"
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-white font-medium text-sm">{project.title}</h3>
+                      <h3 className="text-white font-medium text-sm">
+                        {project.title}
+                      </h3>
                       <div className="flex items-center gap-2">
                         <a
                           href={project.link}
@@ -170,10 +335,15 @@ export default function PortfolioContent() {
                         )}
                       </div>
                     </div>
-                    <p className="text-white/70 text-xs mb-3 leading-relaxed">{project.description}</p>
+                    <p className="text-white/70 text-xs mb-3 leading-relaxed">
+                      {project.description}
+                    </p>
                     <div className="flex flex-wrap gap-1">
                       {project.tech.map((tech, techIndex) => (
-                        <span key={techIndex} className="px-2 py-0.5 rounded text-white/60 bg-white/5 text-xs">
+                        <span
+                          key={techIndex}
+                          className="px-2 py-0.5 rounded text-white/60 bg-white/5 text-xs"
+                        >
                           {tech}
                         </span>
                       ))}
@@ -186,7 +356,7 @@ export default function PortfolioContent() {
             {/* Contact CTA */}
             <div className="pt-4 flex gap-4">
               <a
-                href="a.bhagyacharan@gmail.com"
+                href="mailto:a.bhagyacharan@gmail.com"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-normal text-sm transition-all duration-200 hover:bg-white/90 cursor-pointer"
               >
                 <Mail className="w-4 h-4" />
@@ -196,13 +366,13 @@ export default function PortfolioContent() {
                 href="mailto:alex@example.com"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-white/80 font-normal text-sm border-white/80 hover:bg-white/20 transition-all duration-200 cursor-pointer"
               >
-                <File className="w-4 h-4" />
+                <FileText className="w-4 h-4" />
                 Download Resume
-              </a>  
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
