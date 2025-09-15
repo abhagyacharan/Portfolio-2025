@@ -1,7 +1,7 @@
 // app/page.tsx
 import type { Metadata } from "next";
 import PortfolioContent from "../components/portfolio/PortfolioContent";
-import MeshGradientBackground from "../components/mesh";
+// import MeshGradientBackground from "../components/mesh";
 import ShaderBackground from "@/components/shader-background";
 
 // Optional: Incremental Static Regeneration for home page

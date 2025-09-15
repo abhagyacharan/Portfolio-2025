@@ -26,8 +26,8 @@ export function ProjectsSection({ projects, perPage = 2 }: Props) {
     }
   };
 
-  const canPrev = currentPage > 1;
-  const canNext = currentPage < totalPages;
+  // const canPrev = currentPage > 1;
+  // const canNext = currentPage < totalPages;
 
   return (
     <div className="space-y-4" ref={containerRef}>
