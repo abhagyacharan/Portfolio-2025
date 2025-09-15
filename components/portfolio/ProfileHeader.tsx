@@ -53,14 +53,14 @@ export function ProfileHeader({
         <h2 className="text-base sm:text-lg font-medium text-white/90 border-b border-white/20 pb-2">
           Experience
         </h2>
-        <div className="space-y-4 text-sm">
+        <div className="space-y-4 text-md">
           {experience.map((exp, idx) => (
             <div key={idx}>
               <h3 className="text-white font-medium">{exp.role}</h3>
               <p className="text-white/70">
                 {exp.company} • {exp.period}
               </p>
-              <p className="text-white/60 text-xs mt-1">{exp.summary}</p>
+              <p className="text-white/60 text-sm mt-1">{exp.summary}</p>
             </div>
           ))}
         </div>

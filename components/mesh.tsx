@@ -7,7 +7,7 @@ export default function MeshGradientBackground({ children }: { children: ReactNo
     <div
       className="relative min-h-screen w-full overflow-hidden"
       style={{
-        backgroundImage: "url('/mesh-gradient11.svg')",
+        backgroundImage: "url('/mesh-gradient3.svg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

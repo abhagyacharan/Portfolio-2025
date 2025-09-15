@@ -52,9 +52,9 @@ export const portfolioData: PortfolioData = {
     },
   ],
   techStack: {
-    Frontend: ["React", "Next.js", "TailwindCSS", "Framer"],
+    Frontend: ["React", "Next.js", "TailwindCSS", "Framer",],
     Backend: ["FastAPI", "Flask", "Django", "Node.js"],
-    'Data Science': ["TensorFlow","Keras","Scikit-learn",],
+    'Data Science': ["TensorFlow","Keras","Scikit-learn","NumPy"],
     Databases: ["PostgreSQL", "MySQL", "TortoiseORM"],
     Tools: ["Git","GitHub", "Postman", "LangChain"],
   },
