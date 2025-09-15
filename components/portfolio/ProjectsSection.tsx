@@ -13,7 +13,7 @@ type Props = {
 export function ProjectsSection({ projects, perPage = 2 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const { currentPage, totalPages, pageNumbers, pageItems, goToPage } =
+  const { currentPage, pageNumbers, pageItems, goToPage } =
     usePagination<Project>({ items: projects, perPage });
 
   const handleGoTo = (page: number) => {
